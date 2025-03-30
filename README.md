@@ -44,7 +44,7 @@ struct RepoAPIClient: RepositoryHandling {
 ```
 
 - Sendableは、Swift Concurrencyにおいてタスク間で値を安全にやり取りできることを保証するための仕組みです。
-- 本セッションではテストの内容がメインなので、ここでのSendableの解説は簡単な説明に留めています。Sendableについてさらに詳しく知りたい方は、[補足資料](https://github.com/mixigroup/ios-swiftui-training/edit/session-3.2/README.md#%E8%A3%9C%E8%B6%B3%E8%B3%87%E6%96%99)をご参照ください。 
+- 本セッションではテストの内容がメインなので、ここでのSendableの解説は簡単な説明に留めています。Sendableについてさらに詳しく知りたい方は、[補足資料](https://github.com/mixigroup/ios-swiftui-training/blob/session-3.2/README.md#補足資料)をご参照ください。 
 
 ```swift
 @Observable
@@ -72,7 +72,7 @@ final class ReposStore {
 }
 ```
 
-- `any` キーワードについてもテストの主題から逸れるため、詳細な解説は省略します。詳しく知りたい方は[補足資料](https://github.com/mixigroup/ios-swiftui-training/edit/session-3.2/README.md#%E8%A3%9C%E8%B6%B3%E8%B3%87%E6%96%99)をご参照ください。
+- `any` キーワードについてもテストの主題から逸れるため、詳細な解説は省略します。詳しく知りたい方は[補足資料](https://github.com/mixigroup/ios-swiftui-training/blob/session-3.2/README.md#補足資料)をご参照ください。
 
 - これで `RepoAPIClient` をモックに差し替える準備が整いました、早速モックを作ってみましょう
 
