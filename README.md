@@ -32,7 +32,7 @@ struct ReposStoreTests {
     - `RepoAPIClient` のインターフェースを抽象化したprotocolを`ReposStore`のイニシャライザ引数とする
 
 ```swift
-protocol RepositoryHandling {
+protocol RepositoryHandling: Sendable {
     func getRepos() async throws -> [Repo]
 }
 
@@ -43,8 +43,27 @@ struct RepoAPIClient: RepositoryHandling {
 }
 ```
 
+- Sendableは、Swift Concurrencyにおいてタスク間で値を安全にやり取りできることを保証するための仕組みです。
+- 本セッションではテストの内容がメインなので、ここでのSendableの解説は簡単な説明に留めています。
+- Sendableについてさらに詳しく知りたい方は、下記の詳細ブロックをご参照ください。 
+<details>
+    <summary>Sendableの詳細</summary>
+
+**Sendable** は、Swift Concurrencyで「複数の並行タスク間を安全に受け渡せる値」であることを示すためのプロトコルです。
+Swiftでは、並行処理によるデータ競合やメモリ破壊を防ぐために「並行安全」であることをコンパイラに保証させる仕組みとして、型が `Sendable` に準拠しているかどうかを静的チェックする機能が導入されています。
+
+- `Sendable` に準拠すると「この型は並行処理の境界を越えても安全に扱える」というコンパイラのお墨付きが得られ、並行処理上で安心してやり取りできるようになります。
+- もし、内部に並行安全ではないプロパティを含んでいる場合は、コンパイラから警告やエラーが出るため、誤った使用を防止できます。
+
+今回の例では、`ReposStore` が並行処理(タスク/actorの境界など)をまたいで `RepoAPIClient` を扱う可能性があるため、そのプロトコルを `Sendable` にしておくことでコンパイラに安全性を保証させています。
+
+Sendableについてさらに詳しく理解したい方は、[Swift Concurrency - Sendable Types](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Sendable-Types) を読んでみるとより理解が深められると思います。
+
+</details>
+
 ```swift
 @Observable
+@MainActor
 final class ReposStore {
     enum Action {
         case onAppear
@@ -75,7 +94,7 @@ struct ReposStoreTests {
     ...
     
     struct MockRepoAPIClient: RepositoryHandling {
-        var getRepos: () async throws -> [Repo]
+        var getRepos: @Sendable () async throws -> [Repo]
 
         func getRepos() async throws -> [Repo] {
             try await getRepos()
