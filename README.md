@@ -44,22 +44,7 @@ struct RepoAPIClient: RepositoryHandling {
 ```
 
 - Sendableは、Swift Concurrencyにおいてタスク間で値を安全にやり取りできることを保証するための仕組みです。
-- 本セッションではテストの内容がメインなので、ここでのSendableの解説は簡単な説明に留めています。
-- Sendableについてさらに詳しく知りたい方は、下記の詳細ブロックをご参照ください。 
-<details>
-    <summary>Sendableの詳細</summary>
-
-**Sendable** は、Swift Concurrencyで「複数の並行タスク間を安全に受け渡せる値」であることを示すためのプロトコルです。
-Swiftでは、並行処理によるデータ競合やメモリ破壊を防ぐために「並行安全」であることをコンパイラに保証させる仕組みとして、型が `Sendable` に準拠しているかどうかを静的チェックする機能が導入されています。
-
-- `Sendable` に準拠すると「この型は並行処理の境界を越えても安全に扱える」というコンパイラのお墨付きが得られ、並行処理上で安心してやり取りできるようになります。
-- もし、内部に並行安全ではないプロパティを含んでいる場合は、コンパイラから警告やエラーが出るため、誤った使用を防止できます。
-
-今回の例では、`ReposStore` が並行処理(タスク/actorの境界など)をまたいで `RepoAPIClient` を扱う可能性があるため、そのプロトコルを `Sendable` にしておくことでコンパイラに安全性を保証させています。
-
-Sendableについてさらに詳しく理解したい方は、[Swift Concurrency - Sendable Types](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Sendable-Types) を読んでみるとより理解が深められると思います。
-
-</details>
+- 本セッションではテストの内容がメインなので、ここでのSendableの解説は簡単な説明に留めています。Sendableについてさらに詳しく知りたい方は、[補足資料](https://github.com/mixigroup/ios-swiftui-training/edit/session-3.2/README.md#%E8%A3%9C%E8%B6%B3%E8%B3%87%E6%96%99)をご参照ください。 
 
 ```swift
 @Observable
@@ -72,10 +57,10 @@ final class ReposStore {
 
     private(set) var state: Stateful<[Repo]> = .loading
 
-    private let repoAPIClient: RepositoryHandling
+    private let apiClient: any RepositoryHandling
 
-    init(repoAPIClient: RepositoryHandling = RepoAPIClient()) {
-        self.repoAPIClient = repoAPIClient
+    init(apiClient: any RepositoryHandling = RepoAPIClient()) {
+        self.apiClient = apiClient
     }
     ...
     func send(_ action: Action) async {
@@ -86,6 +71,8 @@ final class ReposStore {
     }
 }
 ```
+
+- `any` キーワードについてもテストの主題から逸れるため、詳細な解説は省略します。詳しく知りたい方は[補足資料](https://github.com/mixigroup/ios-swiftui-training/edit/session-3.2/README.md#%E8%A3%9C%E8%B6%B3%E8%B3%87%E6%96%99)をご参照ください。
 
 - これで `RepoAPIClient` をモックに差し替える準備が整いました、早速モックを作ってみましょう
 
@@ -114,7 +101,7 @@ struct ReposStoreTests {
 struct ReposStoreTests {
     @Test func onAppear_正常系() async {
         let store = ReposStore(
-            repoAPIClient: MockRepoAPIClient(
+            apiClient: MockRepoAPIClient(
                 getRepos: { [.mock1, .mock2] }
             )
         )
@@ -155,7 +142,7 @@ let dummyError = DummyError()
 ```swift
 @Test func onAppear_異常系() async {
     let store = ReposStore(
-        repoAPIClient: MockRepoAPIClient(
+        aPIClient: MockRepoAPIClient(
             getRepos: { throw DummyError() }
         )
     )
@@ -173,6 +160,36 @@ let dummyError = DummyError()
 
 テストが通ることが確認できれば完了です
 
+</details>
+
+### 補足資料
+<details>
+    <summary>Sendableについて</summary>
+
+**Sendable** は、Swift Concurrencyで「複数の並行タスク間を安全に受け渡せる値」であることを示すためのプロトコルです。
+Swiftでは、並行処理によるデータ競合やメモリ破壊を防ぐために「並行安全」であることをコンパイラに保証させる仕組みとして、型が `Sendable` に準拠しているかどうかを静的チェックする機能が導入されています。
+
+- `Sendable` に準拠すると「この型は並行処理の境界を越えても安全に扱える」というコンパイラのお墨付きが得られ、並行処理上で安心してやり取りできるようになります。
+- もし、内部に並行安全ではないプロパティを含んでいる場合は、コンパイラから警告やエラーが出るため、誤った使用を防止できます。
+
+今回の例では、`ReposStore` が並行処理(タスク/actorの境界など)をまたいで `RepoAPIClient` を扱う可能性があるため、そのプロトコルを `Sendable` にしておくことでコンパイラに安全性を保証させています。
+
+Sendableについてさらに詳しく理解したい方は、[Swift Concurrency - Sendable Types](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Sendable-Types) を読んでみるとより理解が深められると思います。
+
+</details>
+
+<details>
+    <summary>`any` キーワードについて</summary>
+
+- Swift 5.6以降、protocolを型として利用する際に、その型が存在型であることを明示するため、`any` キーワードが導入されました。
+- 存在型とは、あるプロトコルに準拠する任意の型の値を保持できる型のことです。  `any` を使用することで、変数や定数が具体的な型ではなく、プロトコルに準拠する任意の型を表すことを明確に示すことができます。
+- 例えば、以下のコードは `RepositoryHandling` プロトコルに準拠する任意の型（存在型）を保持できることを示しています。
+
+```swift
+private let repoAPIClient: any RepositoryHandling = RepoAPIClient()
+```
+- この記述により、repoAPIClientがRepositoryHandlingに準拠する存在型であることが明確になり、コードの意図がより分かりやすくなります。
+- 従来は `any` を省略しても動作していましたが、将来的には明示的に `any` を記述することが必須となる可能性があるため、早めにこの構文に慣れておきましょう。
 </details>
 
 ### 前セッションとのDiff
