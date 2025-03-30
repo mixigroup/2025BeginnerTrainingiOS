@@ -1,6 +1,7 @@
 import Observation
 
 @Observable
+@MainActor
 final class ReposStore {
     enum Action {
         case onAppear

@@ -1,6 +1,6 @@
 import Foundation
 
-protocol RepositoryHandling {
+protocol RepositoryHandling: Sendable {
     func getRepos() async throws -> [Repo]
 }
 

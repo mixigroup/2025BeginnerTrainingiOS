@@ -2,6 +2,7 @@ import Testing
 @testable import GitHubClient
 
 struct ReposStoreTests {
+    @MainActor
     @Test func onAppear_正常系() async {
         let store = ReposStore(
             apiClient: MockRepoAPIClient(
@@ -19,6 +20,7 @@ struct ReposStoreTests {
         }
     }
 
+    @MainActor
     @Test func onAppear_異常系() async {
         let store = ReposStore(
             apiClient: MockRepoAPIClient(
