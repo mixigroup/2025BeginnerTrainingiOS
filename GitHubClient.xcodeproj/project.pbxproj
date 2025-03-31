@@ -3,36 +3,26 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
-
-/* Begin PBXBuildFile section */
-		DF1AB524262F0FBC002A9028 /* GitHubClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1AB523262F0FBC002A9028 /* GitHubClientApp.swift */; };
-		DF1AB528262F0FBF002A9028 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1AB527262F0FBF002A9028 /* Assets.xcassets */; };
-		DF1AB52B262F0FBF002A9028 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1AB52A262F0FBF002A9028 /* Preview Assets.xcassets */; };
-		DF938EDB262FF242003642C7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF938ED9262FF242003642C7 /* User.swift */; };
-		DF938EDC262FF242003642C7 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF938EDA262FF242003642C7 /* Repo.swift */; };
-		DF938EE5262FF304003642C7 /* User+mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF938EE3262FF304003642C7 /* User+mock.swift */; };
-		DF938EE6262FF304003642C7 /* Repo+mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF938EE4262FF304003642C7 /* Repo+mock.swift */; };
-		DF938EEC262FF30F003642C7 /* RepoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF938EE9262FF30F003642C7 /* RepoRow.swift */; };
-		DF938EED262FF30F003642C7 /* RepoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF938EEA262FF30F003642C7 /* RepoListView.swift */; };
-		DF938EEE262FF30F003642C7 /* RepoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF938EEB262FF30F003642C7 /* RepoDetailView.swift */; };
-/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DF1AB520262F0FBC002A9028 /* GitHubClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF1AB523262F0FBC002A9028 /* GitHubClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubClientApp.swift; sourceTree = "<group>"; };
-		DF1AB527262F0FBF002A9028 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DF1AB52A262F0FBF002A9028 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		DF1AB52C262F0FBF002A9028 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DF938ED9262FF242003642C7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		DF938EDA262FF242003642C7 /* Repo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
-		DF938EE3262FF304003642C7 /* User+mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+mock.swift"; sourceTree = "<group>"; };
-		DF938EE4262FF304003642C7 /* Repo+mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Repo+mock.swift"; sourceTree = "<group>"; };
-		DF938EE9262FF30F003642C7 /* RepoRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoRow.swift; sourceTree = "<group>"; };
-		DF938EEA262FF30F003642C7 /* RepoListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoListView.swift; sourceTree = "<group>"; };
-		DF938EEB262FF30F003642C7 /* RepoDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E60C921E2D9A5BD400FC26C9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DF1AB51F262F0FBC002A9028 /* GitHubClient */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E60C92122D9A5BD400FC26C9 /* GitHubClient */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E60C921E2D9A5BD400FC26C9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = GitHubClient; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DF1AB51D262F0FBC002A9028 /* Frameworks */ = {
@@ -48,7 +38,7 @@
 		DF1AB517262F0FBC002A9028 = {
 			isa = PBXGroup;
 			children = (
-				DF1AB522262F0FBC002A9028 /* GitHubClient */,
+				E60C92122D9A5BD400FC26C9 /* GitHubClient */,
 				DF1AB521262F0FBC002A9028 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,56 +49,6 @@
 				DF1AB520262F0FBC002A9028 /* GitHubClient.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		DF1AB522262F0FBC002A9028 /* GitHubClient */ = {
-			isa = PBXGroup;
-			children = (
-				DF1AB523262F0FBC002A9028 /* GitHubClientApp.swift */,
-				DF1AB527262F0FBF002A9028 /* Assets.xcassets */,
-				DF1AB52C262F0FBF002A9028 /* Info.plist */,
-				DF938EE8262FF30F003642C7 /* Views */,
-				DF938ED8262FF242003642C7 /* Models */,
-				DF1AB529262F0FBF002A9028 /* Preview Content */,
-			);
-			path = GitHubClient;
-			sourceTree = "<group>";
-		};
-		DF1AB529262F0FBF002A9028 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				DF938EE2262FF304003642C7 /* Mocks */,
-				DF1AB52A262F0FBF002A9028 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		DF938ED8262FF242003642C7 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				DF938ED9262FF242003642C7 /* User.swift */,
-				DF938EDA262FF242003642C7 /* Repo.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		DF938EE2262FF304003642C7 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				DF938EE3262FF304003642C7 /* User+mock.swift */,
-				DF938EE4262FF304003642C7 /* Repo+mock.swift */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
-		DF938EE8262FF30F003642C7 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				DF938EEA262FF30F003642C7 /* RepoListView.swift */,
-				DF938EEB262FF30F003642C7 /* RepoDetailView.swift */,
-				DF938EE9262FF30F003642C7 /* RepoRow.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +65,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E60C92122D9A5BD400FC26C9 /* GitHubClient */,
 			);
 			name = GitHubClient;
 			productName = GitHubClient;
@@ -169,8 +112,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF1AB52B262F0FBF002A9028 /* Preview Assets.xcassets in Resources */,
-				DF1AB528262F0FBF002A9028 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,14 +122,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF1AB524262F0FBC002A9028 /* GitHubClientApp.swift in Sources */,
-				DF938EED262FF30F003642C7 /* RepoListView.swift in Sources */,
-				DF938EDB262FF242003642C7 /* User.swift in Sources */,
-				DF938EEE262FF30F003642C7 /* RepoDetailView.swift in Sources */,
-				DF938EE5262FF304003642C7 /* User+mock.swift in Sources */,
-				DF938EDC262FF242003642C7 /* Repo.swift in Sources */,
-				DF938EEC262FF30F003642C7 /* RepoRow.swift in Sources */,
-				DF938EE6262FF304003642C7 /* Repo+mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
