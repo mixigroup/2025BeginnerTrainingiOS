@@ -4,7 +4,7 @@
 - テストしたい項目は以下の通りです
     - Viewが表示されたとき(onAppear actionを受け取ったとき)にリポジトリ一覧を取得して表示する
     - 取得時にエラーが発生した場合にはstateには`.failed`がセットされていること
-- iOSでテストを書くために、まずはTest Targetを下図のように追加してみましょう
+- [session-1.0](https://github.com/mixigroup/ios-swiftui-training/tree/session-1.0)のプロジェクト作成時にTest Targetを追加しているはずです。もしTest Targetが見当たらない場合は下図のように追加してみましょう。
 
 <img src="https://user-images.githubusercontent.com/8536870/115539731-49d0fa00-a2d8-11eb-85a0-87ec3b6548c0.png">
 
