@@ -15,7 +15,7 @@ struct DummyError: Error {}
 import Foundation
 
 struct MockRepoAPIClient: RepositoryHandling {
-    var getRepos: () async throws -> [Repo]
+    var getRepos: @Sendable () async throws -> [Repo]
 
     func getRepos() async throws -> [Repo] {
         try await getRepos()
@@ -24,10 +24,10 @@ struct MockRepoAPIClient: RepositoryHandling {
 ```
 - 次に、`ReposStore`のイニシャライザ引数のデフォルト値として `RepoAPIClient()` をセットしていましたが、これを機にReposStoreのインスタンスを作る度に明示的に`RepositoryHandling`に準拠したインスタンスを渡す形に変更しましょう
 ```diff 
-     private let apiClient: RepositoryHandling
+     private let apiClient: any RepositoryHandling
  
--    init(apiClient: RepositoryHandling = RepoAPIClient()) {
-+    init(apiClient: RepositoryHandling) {
+-    init(apiClient: any RepositoryHandling = RepoAPIClient()) {
++    init(apiClient: any RepositoryHandling) {
          self.repoAPIClient = repoAPIClient
      }
 ```
