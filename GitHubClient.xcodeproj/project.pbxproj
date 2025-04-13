@@ -14,11 +14,19 @@
 			remoteGlobalIDString = DF1AB51F262F0FBC002A9028;
 			remoteInfo = GitHubClient;
 		};
+		E62DD4052DABF7B600CF485C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF1AB518262F0FBC002A9028 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF1AB51F262F0FBC002A9028;
+			remoteInfo = GitHubClient;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DF1AB520262F0FBC002A9028 /* GitHubClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E62DD3F22DABF76700CF485C /* GitHubClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E62DD3FF2DABF7B600CF485C /* GitHubClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -34,6 +42,7 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E60C93072D9A5C7600FC26C9 /* GitHubClient */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E60C930D2D9A5C7600FC26C9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = GitHubClient; sourceTree = "<group>"; };
 		E62DD3F32DABF76700CF485C /* GitHubClientTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = GitHubClientTests; sourceTree = "<group>"; };
+		E62DD4002DABF7B600CF485C /* GitHubClientUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = GitHubClientUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +60,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E62DD3FC2DABF7B600CF485C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -59,6 +75,7 @@
 			children = (
 				E60C93072D9A5C7600FC26C9 /* GitHubClient */,
 				E62DD3F32DABF76700CF485C /* GitHubClientTests */,
+				E62DD4002DABF7B600CF485C /* GitHubClientUITests */,
 				DF1AB521262F0FBC002A9028 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,6 +85,7 @@
 			children = (
 				DF1AB520262F0FBC002A9028 /* GitHubClient.app */,
 				E62DD3F22DABF76700CF485C /* GitHubClientTests.xctest */,
+				E62DD3FF2DABF7B600CF485C /* GitHubClientUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +136,29 @@
 			productReference = E62DD3F22DABF76700CF485C /* GitHubClientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E62DD3FE2DABF7B600CF485C /* GitHubClientUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E62DD4072DABF7B600CF485C /* Build configuration list for PBXNativeTarget "GitHubClientUITests" */;
+			buildPhases = (
+				E62DD3FB2DABF7B600CF485C /* Sources */,
+				E62DD3FC2DABF7B600CF485C /* Frameworks */,
+				E62DD3FD2DABF7B600CF485C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E62DD4062DABF7B600CF485C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				E62DD4002DABF7B600CF485C /* GitHubClientUITests */,
+			);
+			name = GitHubClientUITests;
+			packageProductDependencies = (
+			);
+			productName = GitHubClientUITests;
+			productReference = E62DD3FF2DABF7B600CF485C /* GitHubClientUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -132,6 +173,10 @@
 						CreatedOnToolsVersion = 12.4;
 					};
 					E62DD3F12DABF76700CF485C = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = DF1AB51F262F0FBC002A9028;
+					};
+					E62DD3FE2DABF7B600CF485C = {
 						CreatedOnToolsVersion = 16.3;
 						TestTargetID = DF1AB51F262F0FBC002A9028;
 					};
@@ -152,6 +197,7 @@
 			targets = (
 				DF1AB51F262F0FBC002A9028 /* GitHubClient */,
 				E62DD3F12DABF76700CF485C /* GitHubClientTests */,
+				E62DD3FE2DABF7B600CF485C /* GitHubClientUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -165,6 +211,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E62DD3F02DABF76700CF485C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E62DD3FD2DABF7B600CF485C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -188,6 +241,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E62DD3FB2DABF7B600CF485C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -195,6 +255,11 @@
 			isa = PBXTargetDependency;
 			target = DF1AB51F262F0FBC002A9028 /* GitHubClient */;
 			targetProxy = E62DD3F62DABF76700CF485C /* PBXContainerItemProxy */;
+		};
+		E62DD4062DABF7B600CF485C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF1AB51F262F0FBC002A9028 /* GitHubClient */;
+			targetProxy = E62DD4052DABF7B600CF485C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -414,6 +479,55 @@
 			};
 			name = Release;
 		};
+		E62DD4082DABF7B600CF485C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.mixi.GitHubClientUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = GitHubClient;
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Debug;
+		};
+		E62DD4092DABF7B600CF485C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.mixi.GitHubClientUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = GitHubClient;
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -440,6 +554,15 @@
 			buildConfigurations = (
 				E62DD3F82DABF76700CF485C /* Debug */,
 				E62DD3F92DABF76700CF485C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E62DD4072DABF7B600CF485C /* Build configuration list for PBXNativeTarget "GitHubClientUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E62DD4082DABF7B600CF485C /* Debug */,
+				E62DD4092DABF7B600CF485C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
