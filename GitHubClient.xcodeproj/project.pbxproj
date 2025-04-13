@@ -6,8 +6,19 @@
 	objectVersion = 70;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		E62DD3F62DABF76700CF485C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF1AB518262F0FBC002A9028 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF1AB51F262F0FBC002A9028;
+			remoteInfo = GitHubClient;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		DF1AB520262F0FBC002A9028 /* GitHubClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E62DD3F22DABF76700CF485C /* GitHubClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -22,10 +33,18 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E60C93072D9A5C7600FC26C9 /* GitHubClient */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E60C930D2D9A5C7600FC26C9 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = GitHubClient; sourceTree = "<group>"; };
+		E62DD3F32DABF76700CF485C /* GitHubClientTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = GitHubClientTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DF1AB51D262F0FBC002A9028 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E62DD3EF2DABF76700CF485C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				E60C93072D9A5C7600FC26C9 /* GitHubClient */,
+				E62DD3F32DABF76700CF485C /* GitHubClientTests */,
 				DF1AB521262F0FBC002A9028 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				DF1AB520262F0FBC002A9028 /* GitHubClient.app */,
+				E62DD3F22DABF76700CF485C /* GitHubClientTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,6 +95,29 @@
 			productReference = DF1AB520262F0FBC002A9028 /* GitHubClient.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E62DD3F12DABF76700CF485C /* GitHubClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E62DD3FA2DABF76700CF485C /* Build configuration list for PBXNativeTarget "GitHubClientTests" */;
+			buildPhases = (
+				E62DD3EE2DABF76700CF485C /* Sources */,
+				E62DD3EF2DABF76700CF485C /* Frameworks */,
+				E62DD3F02DABF76700CF485C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E62DD3F72DABF76700CF485C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				E62DD3F32DABF76700CF485C /* GitHubClientTests */,
+			);
+			name = GitHubClientTests;
+			packageProductDependencies = (
+			);
+			productName = GitHubClientTests;
+			productReference = E62DD3F22DABF76700CF485C /* GitHubClientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -81,11 +125,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					DF1AB51F262F0FBC002A9028 = {
 						CreatedOnToolsVersion = 12.4;
+					};
+					E62DD3F12DABF76700CF485C = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = DF1AB51F262F0FBC002A9028;
 					};
 				};
 			};
@@ -103,12 +151,20 @@
 			projectRoot = "";
 			targets = (
 				DF1AB51F262F0FBC002A9028 /* GitHubClient */,
+				E62DD3F12DABF76700CF485C /* GitHubClientTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		DF1AB51E262F0FBC002A9028 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E62DD3F02DABF76700CF485C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -125,7 +181,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E62DD3EE2DABF76700CF485C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E62DD3F72DABF76700CF485C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF1AB51F262F0FBC002A9028 /* GitHubClient */;
+			targetProxy = E62DD3F62DABF76700CF485C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		DF1AB52D262F0FBF002A9028 /* Debug */ = {
@@ -292,6 +363,57 @@
 			};
 			name = Release;
 		};
+		E62DD3F82DABF76700CF485C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.mixi.GitHubClientTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitHubClient.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GitHubClient";
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Debug;
+		};
+		E62DD3F92DABF76700CF485C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.co.mixi.GitHubClientTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitHubClient.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GitHubClient";
+				XROS_DEPLOYMENT_TARGET = 2.4;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -309,6 +431,15 @@
 			buildConfigurations = (
 				DF1AB530262F0FBF002A9028 /* Debug */,
 				DF1AB531262F0FBF002A9028 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E62DD3FA2DABF76700CF485C /* Build configuration list for PBXNativeTarget "GitHubClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E62DD3F82DABF76700CF485C /* Debug */,
+				E62DD3F92DABF76700CF485C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
