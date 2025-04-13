@@ -39,4 +39,14 @@ struct ReposStoreTests {
             Issue.record("state should be `.failed`")
         }
     }
+
+    struct MockRepoAPIClient: RepositoryHandling {
+        var getRepos: @Sendable () async throws -> [Repo]
+
+        func getRepos() async throws -> [Repo] {
+            try await getRepos()
+        }
+    }
+
+    struct DummyError: Error {}
 }
