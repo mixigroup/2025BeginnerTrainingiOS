@@ -373,7 +373,90 @@ func change(c: C) {
 - 参照渡しを実現するには[inoutパラメータ](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/declarations#In-Out-Parameters)を使用します。
 - ただし、inoutは慎重に使用するようにしましょう。関数内で行った変更が関数の外の変数にも影響を及ぼすなど、意図せぬ副作用の原因になることがあります。
 
-#### ARC（本研修ではこれをあまり意識せずにできるので、スキップでもOK）
+### Protocols
+- protocolは、特定の機能に適したメソッドやproperty等のインターフェースを定義します。protocolはclassやstruct, enumに適用することができます。
+
+```swift
+protocol Drink {
+    // 定価
+    var price: Double { get }
+    func serve()
+}
+
+extension Drink {
+    func serve() {
+        print("Serving a drink: $\(price)")
+    }
+}
+
+struct Soda: Drink {
+    let price: Double
+}
+
+let soda = Soda(price: 1.23)
+soda.serve()
+// Serving a drink: $1.23
+
+protocol Discountable {
+    var discountPrice: Double { get }
+}
+
+struct Coffee {
+    let price: Double
+}
+
+// Coffee に Discountable を適用し、割引対応を追加
+extension Coffee: Discountable {
+    // 例: $1引き
+    var discountPrice: Double { 1.0 }
+}
+
+// デフォルト実装を上書きすることも可能
+extension Coffee: Drink {
+    func serve() {
+        print("Serving a HOT coffee: $\(price - discountPrice)")
+    }
+}
+
+let coffee = Coffee(price: 4.50)
+coffee.serve()
+// Serving a HOT drink: $3.5
+```
+
+- 例えば、同じような機能を複数箇所に持たせたい場合、classの継承を使って実現する代わりに、まずprotocolを使って実現できないか検討してみましょう
+
+### Generics
+- Genericsを扱うことで、任意の型を扱うI/Fを定義できます
+- 例えば、データの読み込み状態を表現するデータ構造を作りたいとします
+- 状態にはすべてで4つあり、それぞれが以下のようなステータスとなります
+  - idle: まだデータを取得しにいっていない
+  - loading: 読み込み中
+  - loaded: 読み込み完了、読み込まれたデータを保持
+  - failed: 読み込み失敗、遭遇したエラーを保持
+
+- これをGenericsで実装するならば以下のようになります
+
+```swift
+enum ViewState<Value> {
+    case idle
+    case loading
+    case failed(Error)
+    case loaded(Value)
+}
+
+var data: ViewState<[String]> = .idle
+// データ取得中
+data = .loading
+// データ取得失敗
+data = .failed(CancellationError())
+// データ取得完了
+data = .loaded(["data1", "data2", "data3"])
+
+// 他の型でも利用可能
+var anotherData: ViewState<[Int]> = .loaded([1, 2, 3])
+```
+
+### ARC（本研修ではこれをあまり意識せずにできるので、スキップでもOK）
 - Swiftのメモリは `ARC(Automatic Reference Counting)` によって管理されています
 - 新しいインスタンスを初期化する際に、ARCはそのインスタンスの型や保有するプロパティに応じたメモリを確保します
 - ARCはそれぞれのインスタンスがいくつのプロパティや変数, 定数から参照されているかをカウントし、その参照カウントがゼロにならない限りメモリは解放しないようになっています
@@ -480,89 +563,6 @@ class Person {
 ```
 
 - 弱参照は参照カウントに加算されません、よって循環参照を防ぎメモリリークを解消してくれます
-
-### Protocols
-- protocolは、特定の機能に適したメソッドやproperty等のインターフェースを定義します。protocolはclassやstruct, enumに適用することができます。
-
-```swift
-protocol Drink {
-    // 定価
-    var price: Double { get }
-    func serve()
-}
-
-extension Drink {
-    func serve() {
-        print("Serving a drink: $\(price)")
-    }
-}
-
-struct Soda: Drink {
-    let price: Double
-}
-
-let soda = Soda(price: 1.23)
-soda.serve()
-// Serving a drink: $1.23
-
-protocol Discountable {
-    var discountPrice: Double { get }
-}
-
-struct Coffee {
-    let price: Double
-}
-
-// Coffee に Discountable を適用し、割引対応を追加
-extension Coffee: Discountable {
-    // 例: $1引き
-    var discountPrice: Double { 1.0 }
-}
-
-// デフォルト実装を上書きすることも可能
-extension Coffee: Drink {
-    func serve() {
-        print("Serving a HOT coffee: $\(price - discountPrice)")
-    }
-}
-
-let coffee = Coffee(price: 4.50)
-coffee.serve()
-// Serving a HOT drink: $3.5
-```
-
-- 例えば、同じような機能を複数箇所に持たせたい場合、classの継承を使って実現する代わりに、まずprotocolを使って実現できないか検討してみましょう
-
-### Generics
-- Genericsを扱うことで、任意の型を扱うI/Fを定義できます
-- 例えば、データの読み込み状態を表現するデータ構造を作りたいとします
-- 状態にはすべてで4つあり、それぞれが以下のようなステータスとなります
-  - idle: まだデータを取得しにいっていない
-  - loading: 読み込み中
-  - loaded: 読み込み完了、読み込まれたデータを保持
-  - failed: 読み込み失敗、遭遇したエラーを保持
-
-- これをGenericsで実装するならば以下のようになります
-
-```swift
-enum ViewState<Value> {
-    case idle
-    case loading
-    case failed(Error)
-    case loaded(Value)
-}
-
-var data: ViewState<[String]> = .idle
-// データ取得中
-data = .loading
-// データ取得失敗
-data = .failed(CancellationError())
-// データ取得完了
-data = .loaded(["data1", "data2", "data3"])
-
-// 他の型でも利用可能
-var anotherData: ViewState<[Int]> = .loaded([1, 2, 3])
-```
 
 ## Next
 [1. SwiftUIの基本 -前準備-](https://github.com/mixigroup/ios-swiftui-training/tree/session-1.0)
