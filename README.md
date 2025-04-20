@@ -103,8 +103,11 @@ let value = optionalValue!
 
 ```swift
 optionalValue = nil
-let value = optionalValue!
-// error: Execution was interrupted, reason: EXC_BAD_INSTRUCTION (code=EXC_I386_INVOP, subcode=0x0).
+let forceUnwrappedvalue = optionalValue!
+// Fatal error: Unexpectedly found nil while unwrapping an Optional value
+// Playground execution failed:
+//
+// error: Execution was interrupted, reason: EXC_BREAKPOINT (code=1, subcode=0x195713658).
 ```
 
 ### 関数
