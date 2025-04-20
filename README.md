@@ -178,37 +178,6 @@ names.sorted { $0 < $1 }
 names.sorted(by: <)
 ```
 
-### 式と文
-- 式は、評価されると1つの値になるプログラムの要素のことです。
-  - `1 + 1`, `if`, `switch` など
-- 文は、式とは違って評価されても値にはなりません。
-  - `let x = 2`, `for-in`, `while`, `if`, `switch` など
-- ifとswitchは場合によって、式と文のそれぞれに解釈されることがあります。
-
-```swift
-// 式
-let number: Double = if Bool.random() { 2.718 } else { 3.14 }
-let word: String = switch state {
-    case .success: "guitar"
-    case .failure: "piano"
-}
-
-// 文
-let number: Double
-if Bool.random() {
-    number = 2.718
-} else {
-    number = 3.14
-}
-let word: String
-switch state {
-case .success:
-    word = "guitar"
-case .failure:
-    word = "piano"
-}
-```
-
 ### enum
 - Swiftのenumは以下のような定義になります
 
@@ -250,12 +219,12 @@ default: break
 ```
 
 - SwiftのSwitch文にenumが渡された場合、すべてのcaseが網羅されていなければコンパイル時にエラーが出ます
-- この性質はかなり優秀で、例えばenumに新しくcaseが追加された場合、いろんな箇所で定義されたSwitch文のエラーが出て修正箇所を明示してくれます
-- default caseを用意してしまうとこの恩恵は失われてしまうので、極力使わずにすべてのcaseを丁寧に書いていくことが理想です
+- この性質はかなり優秀です。例えばenumに新しいcaseが追加された場合、そのenumを使用しているすべてのswitch文にcaseが1つ足りないことを伝えるエラーが発生します。つまり、コードを実行する前に修正箇所を洗い出すことができます。
+- default caseを用意してしまうとこの恩恵は失われてしまうので、慣れるまではすべてのcaseに応じた分岐を丁寧に書くことをおすすめします。
 
 #### Associated Values
-- 例えば、成功か失敗の状態を表すStateというenumを考え、失敗時のエラーを値として関連付けたいと考えます
-- その場合のenumの定義は以下のようになります
+- 例えば、成功か失敗の状態を表すStateというenumを考え、失敗は発生したエラーをもつデータ構造を考えます。
+- 実装例はこちらになります。
 
 ```swift
 enum State {
@@ -267,11 +236,41 @@ enum State {
 - Switch文を用いてパターンマッチでエラーの値を取得します
 
 ```swift
-struct DummyError: Error {}
-let state: State = .failure(DummyError())
+let state: State = .failure(CancellationError())
 switch state {
 case .success: print("Success")
 case let .failure(error): print("Failure: \(error)")
+}
+```
+
+### 式と文
+- 式は、評価されると1つの値になるプログラムの要素のことです。
+  - `1 + 1`, `if`, `switch` など
+- 文は、式とは違って評価されても値にはなりません。
+  - `let x = 2`, `for-in`, `while`, `if`, `switch` など
+- ifとswitchは場合によって、式と文のそれぞれに解釈されることがあります。
+
+```swift
+// 式
+let number: Double = if Bool.random() { 2.718 } else { 3.14 }
+let word: String = switch state {
+    case .success: "guitar"
+    case .failure: "piano"
+}
+
+// 文
+let number: Double
+if Bool.random() {
+    number = 2.718
+} else {
+    number = 3.14
+}
+let word: String
+switch state {
+case .success:
+    word = "guitar"
+case .failure:
+    word = "piano"
 }
 ```
 
@@ -292,7 +291,7 @@ class SomeClass {
 - classは、保持するデータの同一性を担保する必要がある場合、あるいはObjective-Cとの互換性が必要な場合に使用しましょう
   - 参考: https://developer.apple.com/documentation/swift/choosing_between_structures_and_classes
 
-- 仮に上記のStateをstructを使って表現する場合、例えば以下のような実装が考えられます。
+- かといって、闇雲にstructを使えばよいという訳ではありません。仮に上記のStateをstructを使って表現する場合、例えば以下のような実装が考えられます。
 ```swift
 struct AnotherState {
   var state: State
@@ -306,7 +305,7 @@ struct AnotherState {
 ```
 - この実装ではstateが`.success`かつ errorが非nilという、本来表現できるはずのない状態を含んでしまいます。
 ```swift
-AnotherState(state: .success, error: DummyError())
+AnotherState(state: .success, error: CancellationError())
 ```
 
 - 上述のAssociated Valuesを使用することで、状態を必要十分に表現することが可能になります。
@@ -338,26 +337,41 @@ print("b: \(b.value)")
 
 ```swift
 class C {
-  var value: Int
-  
-  init(value: Int) {
-    self.value = value
-  }
+    var value: Int
+
+    init(value: Int) {
+        self.value = value
+    }
 }
 
-var a = C(value: 1)
-var b = a
+var x = C(value: 1)
+var y = x
 
-b.value = 2
+y.value = 2
 
-print("a: \(a.value)")
-// a: 2
-print("b: \(b.value)")
-// b: 2
+print("x: \(x.value)")
+// x: 2
+print("y: \(y.value)")
+// y: 2
 ```
 
 - Swiftは値型中心の言語です。現に、Int, String, Arrayなど、Swiftにおいて頻繁に使用する型にもstructが使用されています。
 - どこからともなく変更される可能性のある参照型の利用箇所を限定的にすることで、自信をもってコードを改修することができるようになります
+- ちなみに、Swiftでは関数の引数はデフォルトで定数として扱われます。
+- 関数の中で引数の値を変更することはできません。この挙動を一般的に値渡しといいます。
+```swift
+func change(s: S) {
+    s = S(value: 0) // Cannot assign to value: 's' is a 'let' constant
+}
+
+func change(c: C) {
+    c = C(value: 0) // Cannot assign to value: 'c' is a 'let' constant
+}
+```
+
+- 参照渡し、つまり引数として渡したインスタンスのメモリのアドレスを渡すこともSwiftでは可能です。
+- 参照渡しを実現するには[inoutパラメータ](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/declarations#In-Out-Parameters)を使用します。
+- ただし、inoutは慎重に使用するようにしましょう。関数内で行った変更が関数の外の変数にも影響を及ぼすなど、意図せぬ副作用の原因になることがあります。
 
 #### ARC（本研修ではこれをあまり意識せずにできるので、スキップでもOK）
 - Swiftのメモリは `ARC(Automatic Reference Counting)` によって管理されています
@@ -531,23 +545,23 @@ coffee.serve()
 - これをGenericsで実装するならば以下のようになります
 
 ```swift
-enum Stateful<Value> {
+enum ViewState<Value> {
     case idle
     case loading
     case failed(Error)
     case loaded(Value)
 }
 
-var data: Stateful<[String]> = .idle
+var data: ViewState<[String]> = .idle
 // データ取得中
 data = .loading
 // データ取得失敗
-data = .failed(DummyError())
+data = .failed(CancellationError())
 // データ取得完了
 data = .loaded(["data1", "data2", "data3"])
 
 // 他の型でも利用可能
-var anotherData: Stateful<[Int]> = .loaded([1, 2, 3])
+var anotherData: ViewState<[Int]> = .loaded([1, 2, 3])
 ```
 
 ## Next
