@@ -67,7 +67,7 @@ final class ReposStore {
     func send(_ action: Action) async {
         ...
         do {
-            let repos = try await repoAPIClient.getRepos()
+            let repos = try await apiClient.getRepos()
         ...
     }
 }
