@@ -42,13 +42,15 @@ struct RepoDetailView: View {
 
 - `RepoDetailView` のPreviewで初期化する際にモックデータの `Repo` を渡してあげましょう
 - さて、モックデータを一覧画面や詳細画面で使い回すことになってきました、わざわざ定義し直すのも面倒です
-- このようなPreviewでしか使わないようなデータは `Preview Content` にまとめて定義して使いまわしましょう
-- `Preview Content` はデフォルトで `Development Assets` として設定されているため、プロダクションのバイナリに含まれることはありません
+- このようなPreviewでしか使わないようなデータは、 appのtargetの `Development Assets` という項目に登録したフォルダに格納しておきましょう
+-  `Development Assets` として登録されたフォルダ配下のものは、App Storeに公開するバイナリを作成(アーカイブ)する際に取り除かれます
+- 以下のように`Preview Content`というフォルダを作成し、 `Development Assets`に登録しましょう
 
-![image](https://github.com/user-attachments/assets/d907f2f2-418f-4a25-a493-8b8a6d53f7db)
+<img width="1115" src="https://github.com/user-attachments/assets/4253da58-07a9-44e5-8719-9a1d4125941b" />
 
+<img width="1115" src="https://github.com/user-attachments/assets/b2475b0a-0847-4b41-9e7a-45133bcfbe67" />
 
-- `Preview Content/Mocks` 以下に `Repo+mock.swift` と `User+mock.swift`を追加します
+-  `Development Assets`への登録が完了したら、 `Preview Content/Mocks` 配下に `Repo+mock.swift` と `User+mock.swift`を追加します
 
 ```swift:User.swift
 extension User {
