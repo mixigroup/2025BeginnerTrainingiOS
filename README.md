@@ -44,5 +44,11 @@ struct GitHubClientApp: App {
 }
 ```
 
+また、本研修ではSwift Language Versionが`Swift 6`である前提で解説していきます。
+以下を参考に現在の設定を確認し、`Swift 6`となっていることを確認しましょう。
+<img width="1132" alt="スクリーンショット 2025-04-22 1 50 00" src="https://github.com/user-attachments/assets/283304bc-2f82-4dd2-a695-b68e76442792" />
+
+
+
 ## Next
 [1.1. 簡単なレイアウトを組む](https://github.com/mixigroup/ios-swiftui-training/tree/session-1.1/README.md)
