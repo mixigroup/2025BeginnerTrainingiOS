@@ -61,8 +61,8 @@ VStack(alignment: .leading) {
 ```
 
 - VStackに`(alignment: .leading)`が追加され、左寄せになりました :+1:
-- SwiftUIの魅力の一つはXcode PreviewsによるホットリロードでのUI実装の生産性の高さです、使いこなして効率をあげましょう
 - Preview経由で編集した際にコードベースでどういった差分が追加されたかもしっかり見て覚えておきましょう
+- もしPreviewを使わない場合、コードを書き換えるたびにビルドとアプリを立ち上げ直す必要があります。Previewを使いこなして、効率良く開発を進めましょう。
 
 ### チャレンジ
 - それぞれのTextのfont size, weight, colorを変更してみましょう
