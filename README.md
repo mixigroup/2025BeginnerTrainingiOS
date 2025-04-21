@@ -100,6 +100,7 @@ struct ReposStoreTests {
 
 ```swift
 struct ReposStoreTests {
+    @MainActor
     @Test func onAppear_正常系() async {
         let store = ReposStore(
             apiClient: MockRepoAPIClient(
@@ -122,6 +123,7 @@ struct ReposStoreTests {
 ```
 
 - 順番に見ていきましょう
+- ReposStoreには`@MainActor`を付けましたので、テストケースにも同様に`@MainActor`を付けました
 - `await store.send(.onAppear)` を呼び出し、Viewの`onAppear(_:)` が呼ばれたことをシミュレートし、リポジトリ情報の取得を開始しその結果を待ちます
 - `sned(.onAppear)` が完了すると await より下に書かれたコードが実行され、 `store.state` に対する検証が行われます
 - `⌘ + U` でテストが通ることを確認しましょう
@@ -141,9 +143,10 @@ let dummyError = DummyError()
 正常系のテストと同じ要領でテストを書いていきます
 
 ```swift
+@MainActor
 @Test func onAppear_異常系() async {
     let store = ReposStore(
-        aPIClient: MockRepoAPIClient(
+        apiClient: MockRepoAPIClient(
             getRepos: { throw DummyError() }
         )
     )
