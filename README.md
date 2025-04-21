@@ -13,6 +13,7 @@
 - まずは、「リポジトリ一覧が正常に読み込まれること」をテストするメソッドを追加しましょう
 
 ```swift
+import Testing
 @testable import GitHubClient
 
 struct ReposStoreTests {
